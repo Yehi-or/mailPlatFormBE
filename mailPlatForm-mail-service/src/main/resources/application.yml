@@ -1,0 +1,45 @@
+server:
+  port: ${SERVICE_PORT}
+
+spring:
+  kafka:
+    bootstrap-servers: ${BOOTSTRAP_SERVER}
+  batch:
+    jdbc:
+      initialize-schema: embedded
+  application:
+    name: mailPlatForm-mail-service
+  datasource:
+    driver-class-name: org.mariadb.jdbc.Driver
+    url: ${MARIADB_URL}
+    username: ${MARIADB_USERNAME}
+    password: ${MARIADB_PASSWORD}
+  jpa:
+    hibernate:
+      ddl-auto: update
+  mail:
+    host: smtp.gmail.com
+    port: ${MAIL_PORT}
+    username: ${EMAIL_NAME}
+    password: ${EMAIL_PASSWORD}
+    properties:
+      mail:
+        transport:
+          protocol: smtp
+        mime:
+          charset: UTF-8
+        debug: true
+        smtp:
+          connection-timeout: 5000
+          auth: true
+          starttls:
+            enable: true
+            required: ture
+    default-encoding: utf-8
+
+eureka:
+  client:
+    fetch-registry: true
+    register-with-eureka: true
+    service-url:
+      defaultZone: ${EUREKA_SERVER}
